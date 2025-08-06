@@ -17,3 +17,8 @@ export const createDemande = async (formData: FormData) => {
     throw error
   }
 }
+
+export const getDemandesByType = async (type: string) => {
+  const response = await axios.get(`/demandes/par-type/${type}`)
+  return response.data // ou response.data.data selon ta structure
+}

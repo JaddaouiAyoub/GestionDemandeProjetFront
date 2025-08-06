@@ -21,8 +21,10 @@ export default function LoginPage() {
     try {
       setLoading(true)
       await login(email, password)
-      toast.success('Connexion réussie')
+      console.log(`/${getUser()?.role.toLowerCase()}/dashboard`)
       navigate(`/${getUser()?.role.toLowerCase()}/dashboard`)
+      toast.success('Connexion réussie')
+      
     } catch (error) {
       console.log('Erreur de connexion:', error)
     } finally {

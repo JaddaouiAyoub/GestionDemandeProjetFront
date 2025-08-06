@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ClientLayout from './pages/client/ClientLayout'
-import Home from './pages/client/Home'
+import Home from './pages/client/ClientHome'
 import MesDemandes from './pages/client/MesDemandes'
+import DemandesPage from './components/DemandesPage'
+
+import ResAEPLayout from './pages/responsableAEP/ResAEPLayout'
+import ResAEPHome from './pages/responsableAEP/ResAEPHome'
 import ProtectedRoute from './guards/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
 import { isAuthenticated, getUser } from './utils/auth'
@@ -53,6 +57,25 @@ function App() {
             {/* Sous-routes */}
             <Route path="dashboard" element={<Home />} />
             <Route path="mes-demandes" element={<MesDemandes />} />
+            {/* ...autres routes */}
+          </Route>
+
+          {/* Routes protégées pour le Responsable_aep */}
+          <Route
+            path="/responsable_aep"
+            element={
+              <ProtectedRoute requiredRole="RESPONSABLE_AEP">
+                <ResAEPLayout />
+              </ProtectedRoute>
+            }
+          >
+            {/* ✅ Redirection vers /client/home si on accède à /client */}
+            <Route index element={<Navigate to="dashboard" />} />
+
+            {/* Sous-routes */}
+            <Route path="dashboard" element={<ResAEPHome />} />
+            <Route path="mes-demandes" element={<DemandesPage type="AEP" />} />
+            {/* <Route path="mes-demandes" element={<MesDemandes />} /> */}
             {/* ...autres routes */}
           </Route>
 
