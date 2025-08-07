@@ -18,12 +18,13 @@ instance.interceptors.response.use(
     const msg = err.response?.data?.message || 'Une erreur est survenue'
     
     if (err.response?.status === 401) {
-        logout()
+      logout();
       toast.error('Session expirée ou non autorisé')
     } else {
-        logout()
+        
         toast.error(msg)
     }
+    
     return Promise.reject(err)
   }
 )

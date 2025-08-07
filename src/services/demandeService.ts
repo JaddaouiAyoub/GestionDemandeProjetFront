@@ -27,3 +27,11 @@ export const getDemandeById = async (id: number) => {
   const response = await axios.get(`/demandes/${id}`);
   return response.data.data; // car tu encapsules dans { success, data }
 };
+
+export const updateDemandeStatus = async (id: number, status: string, remarques?: string) => {
+  const response = await axios.put(`/demandes/${id}/status`, {
+    status,
+    remarques
+  });
+  return response.data.data;
+};
