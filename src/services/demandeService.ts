@@ -22,3 +22,8 @@ export const getDemandesByType = async (type: string) => {
   const response = await axios.get(`/demandes/par-type/${type}`)
   return response.data // ou response.data.data selon ta structure
 }
+
+export const getDemandeById = async (id: number) => {
+  const response = await axios.get(`/demandes/${id}`);
+  return response.data.data; // car tu encapsules dans { success, data }
+};

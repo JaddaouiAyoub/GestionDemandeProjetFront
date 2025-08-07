@@ -6,6 +6,7 @@ import ClientLayout from './pages/client/ClientLayout'
 import Home from './pages/client/ClientHome'
 import MesDemandes from './pages/client/MesDemandes'
 import DemandesPage from './components/DemandesPage'
+import DemandeDetail from './components/DemandeDetail'
 
 import ResAEPLayout from './pages/responsableAEP/ResAEPLayout'
 import ResAEPHome from './pages/responsableAEP/ResAEPHome'
@@ -71,7 +72,7 @@ function App() {
           >
             {/* ✅ Redirection vers /client/home si on accède à /client */}
             <Route index element={<Navigate to="dashboard" />} />
-
+            <Route path="demandes/:id" element={<DemandeDetail />} />
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResAEPHome />} />
             <Route path="mes-demandes" element={<DemandesPage type="AEP" />} />
@@ -83,7 +84,7 @@ function App() {
           <Route path="/unauthorized" element={<div>Accès non autorisé</div>} />
 
           {/* Toutes les autres routes → redirigées vers login */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
         </Routes>
       </BrowserRouter>
     </>
