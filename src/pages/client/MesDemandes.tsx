@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { getMesDemandes } from '../../services/demandeService'
 import { toast } from 'react-toastify'
 import AddDemandeModal from '../../components/AddDemandeModal'
+import { useNavigate } from 'react-router-dom'
+import { getUser } from '../../utils/auth'
 
 interface Demande {
     id: number
@@ -17,12 +19,13 @@ export default function MesDemandes() {
     const [demandes, setDemandes] = useState<Demande[]>([])
     const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate()
 
-    const handleModalSuccess = (newDemande:Demande) => {
+    const handleModalSuccess = (newDemande: Demande) => {
         console.log('Demande ajoutée:', newDemande);
         console.log('Demandes avant ajout:', demandes);
         console.log('Demandes après ajout:', [...demandes, newDemande]);
-        setDemandes([newDemande,...demandes])
+        setDemandes([newDemande, ...demandes])
         // Refresh list or toast
         toast.success('Demande créée avec succès')
         console.log('Demande créée avec succès');
@@ -48,15 +51,15 @@ export default function MesDemandes() {
     return (
         <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-6">
-  <h2 className="text-2xl font-bold text-gray-800">📋 Mes Demandes</h2>
+                <h2 className="text-2xl font-bold text-gray-800">📋 Mes Demandes</h2>
 
-  <button
-    onClick={() => setOpen(true)}
-    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-  >
-    +
-  </button>
-</div>
+                <button
+                    onClick={() => setOpen(true)}
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                >
+                    +
+                </button>
+            </div>
 
 
             {open && (
@@ -75,6 +78,7 @@ export default function MesDemandes() {
                                 <th className="p-3 border">Ville</th>
                                 <th className="p-3 border">Créée le</th>
                                 <th className="p-3 border">Status</th>
+                                <th className="p-3 border">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,6 +90,14 @@ export default function MesDemandes() {
                                     <td className="p-3 border">{d.ville}</td>
                                     <td className="p-3 border">{new Date(d.createdAt).toLocaleDateString()}</td>
                                     <td className="p-3 border">{d.status}</td>
+                                    <td className="p-3 border">
+                                        <button
+                                            onClick={() => navigate(`/${getUser()?.role.toLowerCase()}/mes-demandes/${d.id}`)}
+                                            className="bg-blue-500 text-white px-2 py-1 rounded text-sm hover:bg-blue-600"
+                                        >
+                                            Détails
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
