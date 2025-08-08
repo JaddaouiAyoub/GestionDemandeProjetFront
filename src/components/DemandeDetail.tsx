@@ -6,49 +6,49 @@ import { toast } from 'react-toastify';
 import { updateDemandeStatus } from '../services/demandeService';
 
 const DemandeDetail = () => {
-    const { id } = useParams<{ id: string }>();
-    const [demande, setDemande] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false);
-    const [remarquesInput, setRemarquesInput] = useState('');
+  const { id } = useParams<{ id: string }>();
+  const [demande, setDemande] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [remarquesInput, setRemarquesInput] = useState('');
 
 
-    useEffect(() => {
-        const fetchDemande = async () => {
-            try {
-                setLoading(true);
-                const data = await getDemandeById(Number(id));
-                setDemande(data);
-            } catch (err) {
-                console.error(err);
-                setError('Erreur lors du chargement de la demande.');
-                toast.error('Erreur lors du chargement');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchDemande();
-    }, [id]);
-
-    const handleStatusChange = async (status: string, remarques?: string) => {
-        try {
-            const updated = await updateDemandeStatus(Number(id), status, remarques);
-            toast.success('Statut mis à jour');
-            setDemande(updated);
-            setShowModal(false);
-            setRemarquesInput('');
-        } catch (err) {
-            toast.error('Erreur lors de la mise à jour du statut');
-            console.error(err);
-        }
+  useEffect(() => {
+    const fetchDemande = async () => {
+      try {
+        setLoading(true);
+        const data = await getDemandeById(Number(id));
+        setDemande(data);
+      } catch (err) {
+        console.error(err);
+        setError('Erreur lors du chargement de la demande.');
+        toast.error('Erreur lors du chargement');
+      } finally {
+        setLoading(false);
+      }
     };
 
+    fetchDemande();
+  }, [id]);
 
-    if (loading) return <div className="text-center mt-10">Chargement...</div>;
-    if (error) return <div className="text-center mt-10 text-red-600">{error}</div>;
-    if (!demande) return null;
+  const handleStatusChange = async (status: string, remarques?: string) => {
+    try {
+      const updated = await updateDemandeStatus(Number(id), status, remarques);
+      toast.success('Statut mis à jour');
+      setDemande(updated);
+      setShowModal(false);
+      setRemarquesInput('');
+    } catch (err) {
+      toast.error('Erreur lors de la mise à jour du statut');
+      console.error(err);
+    }
+  };
+
+
+  if (loading) return <div className="text-center mt-10">Chargement...</div>;
+  if (error) return <div className="text-center mt-10 text-red-600">{error}</div>;
+  if (!demande) return null;
 
   return (
     <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-10">
@@ -61,6 +61,7 @@ const DemandeDetail = () => {
           <p><span className="font-semibold">Adresse :</span> {demande.adresse}</p>
           <p><span className="font-semibold">Type :</span> {demande.type}</p>
           <p><span className="font-semibold">Status :</span> {demande.status}</p>
+          <p><span className="font-semibold">Description :</span> {demande?.description}</p>
           <p><span className="font-semibold">Remarques :</span> {demande.remarques || 'N/A'}</p>
         </div>
         <div className="space-y-2">
@@ -131,12 +132,12 @@ const DemandeDetail = () => {
             ⚠️ Document manquant / à modifier
           </button>
 
-          <button
+          {/* <button
             className="bg-blue-600 hover:bg-blue-700 transition px-5 py-2 rounded text-white text-sm"
             onClick={() => handleStatusChange('EN_ETUDE')}
           >
             📘 Mettre en étude
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -169,8 +170,8 @@ const DemandeDetail = () => {
         </div>
       )}
     </div>
-  
-    );
+
+  );
 };
 
 export default DemandeDetail;

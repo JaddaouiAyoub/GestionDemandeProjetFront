@@ -26,7 +26,7 @@ export default function ResASSEULayout() {
         <nav className="flex-1">
           <NavItem to="dashboard" icon={<FaTachometerAlt />} label="Dashboard" />
           <NavItem to="mes-demandes" icon={<FaLink />} label="Liste des demandes" />
-          <NavItem to="overview" icon={<FaBars />} label="Overview" />
+          <NavItem to="dossiers" icon={<FaBars />} label="Liste des dossiers d'étude" />
           <NavItem to="events" icon={<FaCalendarAlt />} label="Events" />
           <NavItem to="about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="services" icon={<FaServicestack />} label="Services" />

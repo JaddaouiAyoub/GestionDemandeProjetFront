@@ -7,6 +7,8 @@ import Home from './pages/client/ClientHome'
 import MesDemandes from './pages/client/MesDemandes'
 import DemandesPage from './components/DemandesPage'
 import DemandeDetail from './components/DemandeDetail'
+import DossiersTable from './components/DossiersTable'
+import DossierEtudeDetail from './components/DossierDetail'
 
 import ResAEPLayout from './pages/responsableAEP/ResAEPLayout'
 import ResAEPHome from './pages/responsableAEP/ResAEPHome'
@@ -75,6 +77,9 @@ function App() {
             {/* ✅ Redirection vers /client/home si on accède à /client */}
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="demandes/:id" element={<DemandeDetail />} />
+            <Route path="dossiers" element={<DossiersTable type="AEP" />} />
+            <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResAEPHome />} />
             <Route path="mes-demandes" element={<DemandesPage type="AEP" />} />
@@ -93,6 +98,9 @@ function App() {
             {/* ✅ Redirection vers /client/home si on accède à /client */}
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="demandes/:id" element={<DemandeDetail />} />
+            <Route path="dossiers" element={<DossiersTable type="ASSEU" />} />
+            <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResASSEUHome />} />
             <Route path="mes-demandes" element={<DemandesPage type="ASSEU" />} />
