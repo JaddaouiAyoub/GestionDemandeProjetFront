@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getDemandesByType } from '../services/demandeService'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-
+import { getUser } from '../utils/auth'
 interface Demande {
   id: string
   titre: string
@@ -61,7 +61,7 @@ const DemandesPage: React.FC<{ type: string }> = ({ type }) => {
                 </td>
                 <td className="border px-4 py-2">
                   <button
-                    onClick={() => navigate(`/responsable_aep/demandes/${demande.id}`)}
+                    onClick={() => navigate(`/${getUser()?.role.toLowerCase()}/demandes/${demande.id}`)}
                     className="bg-blue-500 text-white px-2 py-1 rounded text-sm hover:bg-blue-600"
                   >
                     Détails

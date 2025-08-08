@@ -10,6 +10,8 @@ import DemandeDetail from './components/DemandeDetail'
 
 import ResAEPLayout from './pages/responsableAEP/ResAEPLayout'
 import ResAEPHome from './pages/responsableAEP/ResAEPHome'
+import ResASSEULayout from './pages/responsableASSEU/ResASSEULayout'
+import ResASSEUHome from './pages/responsableASSEU/ResASSEUHome'
 import ProtectedRoute from './guards/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
 import { isAuthenticated, getUser } from './utils/auth'
@@ -76,6 +78,24 @@ function App() {
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResAEPHome />} />
             <Route path="mes-demandes" element={<DemandesPage type="AEP" />} />
+            {/* <Route path="mes-demandes" element={<MesDemandes />} /> */}
+            {/* ...autres routes */}
+          </Route>
+          {/* Routes protégées pour le Responsable_aep */}
+          <Route
+            path="/responsable_asseu"
+            element={
+              <ProtectedRoute requiredRole="RESPONSABLE_ASSEU">
+                <ResASSEULayout />
+              </ProtectedRoute>
+            }
+          >
+            {/* ✅ Redirection vers /client/home si on accède à /client */}
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="demandes/:id" element={<DemandeDetail />} />
+            {/* Sous-routes */}
+            <Route path="dashboard" element={<ResASSEUHome />} />
+            <Route path="mes-demandes" element={<DemandesPage type="ASSEU" />} />
             {/* <Route path="mes-demandes" element={<MesDemandes />} /> */}
             {/* ...autres routes */}
           </Route>
