@@ -29,18 +29,20 @@ export const updateDossierStatus = async (
 
 export const addDocumentsToDossier = async (
   id: number | string,
-  files: File[]
+  filesWithLabels: { file: File, label: string }[]
 ) => {
-  const formData = new FormData()
-  files.forEach(file => {
-    formData.append('documents', file)
-  })
+  const formData = new FormData();
+
+  filesWithLabels.forEach(({ file, label }) => {
+    formData.append('documents', file);
+    formData.append('labels', label); // envoyer le label correspondant
+  });
 
   const res = await axios.put(`/dossierEtude/${id}/documents`, formData, {
     headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  })
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
-  return res.data.data
-}
+  return res.data.data;
+};

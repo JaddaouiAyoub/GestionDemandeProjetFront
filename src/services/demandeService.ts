@@ -35,3 +35,21 @@ export const updateDemandeStatus = async (id: number, status: string, remarques?
   });
   return response.data.data;
 };
+
+// src/services/demandeService.ts (ou dossierEtudeService.ts selon ton architecture)
+
+export const updateDemandeDocuments = async (
+  demandeId: string,
+  formData: FormData
+): Promise<any> => {
+  try {
+    return await axios.put(`/demandes/${demandeId}/documents`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour des documents :', error)
+    throw error
+  }
+}

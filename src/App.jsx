@@ -4,6 +4,7 @@ import LoginPage from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ClientLayout from './pages/client/ClientLayout'
 import Home from './pages/client/ClientHome'
+import MesDossiers from './pages/client/MesDossiers'
 import MesDemandes from './pages/client/MesDemandes'
 import DemandesPage from './components/DemandesPage'
 import DemandeDetail from './components/DemandeDetail'
@@ -62,6 +63,9 @@ function App() {
             {/* Sous-routes */}
             <Route path="dashboard" element={<Home />} />
             <Route path="mes-demandes" element={<MesDemandes />} />
+            <Route path="mes-demandes/:id" element={<DemandeDetail />} />
+            <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+            <Route path="mes-dossiers" element={<MesDossiers type="LES_DEUX" />} />
             {/* ...autres routes */}
           </Route>
 

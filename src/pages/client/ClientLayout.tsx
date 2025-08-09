@@ -9,12 +9,12 @@ import { logout } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 
 export default function ClientLayout() {
-    const navigate = useNavigate();
-      const handleLogout = () => {
-        logout()
-        // toast.info('Déconnecté avec succès')
-        navigate('/login')
-      }
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout()
+    // toast.info('Déconnecté avec succès')
+    navigate('/login')
+  }
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -26,20 +26,20 @@ export default function ClientLayout() {
         <nav className="flex-1">
           <NavItem to="dashboard" icon={<FaTachometerAlt />} label="Dashboard" />
           <NavItem to="mes-demandes" icon={<FaLink />} label="Mes demandes" />
-          <NavItem to="overview" icon={<FaBars />} label="Overview" />
+          <NavItem to="mes-dossiers" icon={<FaBars />} label="Mes dossiers D'études" />
           <NavItem to="events" icon={<FaCalendarAlt />} label="Events" />
           <NavItem to="about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="services" icon={<FaServicestack />} label="Services" />
           <NavItem to="contact" icon={<FaEnvelope />} label="Contact" />
         </nav>
 
-<button
-  onClick={handleLogout}
-  className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"
->
-  <FaSignOutAlt className="text-lg" />
-  <span>Se déconnecter</span>
-</button>
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"
+        >
+          <FaSignOutAlt className="text-lg" />
+          <span>Se déconnecter</span>
+        </button>
       </aside>
 
       {/* Main Content */}
@@ -55,8 +55,7 @@ function NavItem({ to, icon, label }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex items-center gap-3 px-6 py-4 transition-all ${
-          isActive ? 'bg-[#064663] text-white font-semibold' : 'hover:bg-[#064663] hover:text-white'
+        `flex items-center gap-3 px-6 py-4 transition-all ${isActive ? 'bg-[#064663] text-white font-semibold' : 'hover:bg-[#064663] hover:text-white'
         }`
       }
     >
