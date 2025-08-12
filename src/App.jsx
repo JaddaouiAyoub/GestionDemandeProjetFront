@@ -10,15 +10,19 @@ import DemandesPage from './components/DemandesPage'
 import DemandeDetail from './components/DemandeDetail'
 import DossiersTable from './components/DossiersTable'
 import DossierEtudeDetail from './components/DossierDetail'
+import DossiersExecutionTable from './components/DossiersExecutionTable'
+import DossierExecutionDetail from './components/DossierExecutionDetail'
 
 import ResAEPLayout from './pages/responsableAEP/ResAEPLayout'
 import ResAEPHome from './pages/responsableAEP/ResAEPHome'
 import ResASSEULayout from './pages/responsableASSEU/ResASSEULayout'
 import ResASSEUHome from './pages/responsableASSEU/ResASSEUHome'
+import DirecteurHome from './pages/directeur/DirecteurHome'
 import ProtectedRoute from './guards/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
 import { isAuthenticated, getUser } from './utils/auth'
 import 'react-toastify/dist/ReactToastify.css'
+import MesDossiersExecution from './pages/client/MesDossiersExexution'
 
 function App() {
   return (
@@ -66,6 +70,29 @@ function App() {
             <Route path="mes-demandes/:id" element={<DemandeDetail />} />
             <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
             <Route path="mes-dossiers" element={<MesDossiers type="LES_DEUX" />} />
+            <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
+            <Route path="dossiersExecution" element={<MesDossiersExecution type="LES_DEUX" />} />
+            {/* ...autres routes */}
+          </Route>
+
+          <Route
+            path="/directeur"
+            element={
+              <ProtectedRoute requiredRole="DIRECTEUR">
+                <ClientLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="dashboard" />} />
+
+            {/* Sous-routes */}
+            <Route path="dashboard" element={<DirecteurHome />} />
+            <Route path="utilisateurs" element={<MesDemandes />} />
+            {/* <Route path="mes-demandes/:id" element={<DemandeDetail />} />
+            <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+            <Route path="mes-dossiers" element={<MesDossiers type="LES_DEUX" />} />
+            <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
+            <Route path="dossiersExecution" element={<MesDossiersExecution type="LES_DEUX" />} /> */}
             {/* ...autres routes */}
           </Route>
 
@@ -83,6 +110,8 @@ function App() {
             <Route path="demandes/:id" element={<DemandeDetail />} />
             <Route path="dossiers" element={<DossiersTable type="AEP" />} />
             <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+            <Route path="dossiersExecution" element={<DossiersExecutionTable type="AEP" />} />
+            <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
 
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResAEPHome />} />
@@ -104,6 +133,8 @@ function App() {
             <Route path="demandes/:id" element={<DemandeDetail />} />
             <Route path="dossiers" element={<DossiersTable type="ASSEU" />} />
             <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
+            <Route path="dossiersExecution" element={<DossiersExecutionTable type="ASSEU" />} />
+            <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
 
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResASSEUHome />} />

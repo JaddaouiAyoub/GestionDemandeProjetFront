@@ -27,10 +27,10 @@ export default function ClientLayout() {
           <NavItem to="dashboard" icon={<FaTachometerAlt />} label="Dashboard" />
           <NavItem to="mes-demandes" icon={<FaLink />} label="Mes demandes" />
           <NavItem to="mes-dossiers" icon={<FaBars />} label="Mes dossiers D'études" />
-          <NavItem to="events" icon={<FaCalendarAlt />} label="Events" />
-          <NavItem to="about" icon={<FaInfoCircle />} label="About" />
+          <NavItem to="dossiersExecution" icon={<FaCalendarAlt />} label="Mes dossiers D'exécution" />
+          {/* <NavItem to="about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="services" icon={<FaServicestack />} label="Services" />
-          <NavItem to="contact" icon={<FaEnvelope />} label="Contact" />
+          <NavItem to="contact" icon={<FaEnvelope />} label="Contact" /> */}
         </nav>
 
         <button

@@ -26,11 +26,11 @@ export default function ResAEPLayout() {
         <nav className="flex-1">
           <NavItem to="dashboard" icon={<FaTachometerAlt />} label="Dashboard" />
           <NavItem to="mes-demandes" icon={<FaLink />} label="Liste des demandes" />
-          <NavItem to="dossiers" icon={<FaBars />} label="Dossiers" />
-          <NavItem to="events" icon={<FaCalendarAlt />} label="Events" />
-          <NavItem to="about" icon={<FaInfoCircle />} label="About" />
+          <NavItem to="dossiers" icon={<FaBars />} label="Dossiers d'études" />
+          <NavItem to="dossiersExecution" icon={<FaCalendarAlt />} label="Dossiers d'exécution" />
+         {/*  <NavItem to="about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="services" icon={<FaServicestack />} label="Services" />
-          <NavItem to="contact" icon={<FaEnvelope />} label="Contact" />
+          <NavItem to="contact" icon={<FaEnvelope />} label="Contact" /> */}
         </nav>
 
 <button
