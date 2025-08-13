@@ -23,6 +23,8 @@ import { ToastContainer } from 'react-toastify'
 import { isAuthenticated, getUser } from './utils/auth'
 import 'react-toastify/dist/ReactToastify.css'
 import MesDossiersExecution from './pages/client/MesDossiersExexution'
+import UsersPage from './pages/directeur/UsersPage'
+import DirecteurLayout from './pages/directeur/DirecteurLayout'
 
 function App() {
   return (
@@ -79,7 +81,7 @@ function App() {
             path="/directeur"
             element={
               <ProtectedRoute requiredRole="DIRECTEUR">
-                <ClientLayout />
+                <DirecteurLayout />
               </ProtectedRoute>
             }
           >
@@ -87,7 +89,7 @@ function App() {
 
             {/* Sous-routes */}
             <Route path="dashboard" element={<DirecteurHome />} />
-            <Route path="utilisateurs" element={<MesDemandes />} />
+            <Route path="utilisateurs" element={<UsersPage />} />
             {/* <Route path="mes-demandes/:id" element={<DemandeDetail />} />
             <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
             <Route path="mes-dossiers" element={<MesDossiers type="LES_DEUX" />} />
