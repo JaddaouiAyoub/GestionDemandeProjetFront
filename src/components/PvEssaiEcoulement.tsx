@@ -37,10 +37,10 @@ export default function PvEssaiEcoulement() {
       {/* Header */}
       <div className="text-center mb-6">
         <img src="/logo-onee2.png" alt="ONEE Logo" className="mx-auto w-64" />
-        <p className="mt-2">
+        {/* <p className="mt-2">
           N° …………………… ASG{visite.id}/202 &nbsp;&nbsp;&nbsp;&nbsp; {visite.dossierExecution.demande.ville}, le{" "}
           {new Date(visite.date).toLocaleDateString()}
-        </p>
+        </p> */}
       </div>
 
       {/* Title */}
@@ -53,6 +53,10 @@ export default function PvEssaiEcoulement() {
         <p>
           <span className="font-bold">OBJET :</span>{" "}
           {visite.dossierExecution?.demande?.titre || "—"}
+        </p>
+        <p>
+          <span className="font-bold">Type de demande :</span>{" "}
+          {visite.dossierExecution?.demande?.type || "—"}
         </p>
         <p>
           <span className="font-bold">Responsable :</span>{" "}
@@ -70,7 +74,7 @@ export default function PvEssaiEcoulement() {
 
       {/* Remarques */}
       <div className="mb-6">
-        <p className="font-bold">Remarques :</p>
+        <p className="font-bold">Avancement :</p>
         <p>{visite.remarques || "Aucune remarque"}</p>
       </div>
 
@@ -84,9 +88,9 @@ export default function PvEssaiEcoulement() {
       {/* Signatures */}
       <div className="flex justify-between mt-12">
         <div>ONEE Branche Eau</div>
-        <div>
+        {/* <div>
           {visite.dossierExecution?.demande?.clientId ? "Client" : "Société"}
-        </div>
+        </div> */}
       </div>
     </div>
     </div>
