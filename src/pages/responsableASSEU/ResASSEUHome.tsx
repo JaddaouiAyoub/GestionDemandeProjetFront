@@ -1,3 +1,5 @@
+import PvEssaiEcoulement from "../../components/PvEssaiEcoulement";
+
 function ResASSEUHome() {
   return (
     <div className="bg-white rounded-lg shadow p-6">
@@ -5,6 +7,7 @@ function ResASSEUHome() {
       <p className="text-gray-700">
         Ceci est la page d'accueil réservée aux Responsable.
       </p>
+      <PvEssaiEcoulement />
     </div>
   )
 }

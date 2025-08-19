@@ -6,7 +6,7 @@ import { getUser } from '../utils/auth';
 
 const documentLabels = ["Attestation IGT", "Bordereau des prix", "Convention laboratoire", "Mémoire Technique", "Plan d'implantation"];
 
-const DossierEtudeDetail = () => {
+const DossierExecutionDetail = () => {
     const { id } = useParams<{ id: string }>();
     const [dossier, setDossier] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -206,7 +206,7 @@ const DossierEtudeDetail = () => {
                         <button
                             className="bg-green-600 hover:bg-green-700 transition px-5 py-2 rounded text-white text-sm disabled:opacity-50"
                             onClick={() => handleStatusChange('ACCEPTEE')}
-                            disabled={!isAccepted}
+                            disabled={isAccepted}
                         >
                             ✅ Accepter le dossier
                         </button>
@@ -255,4 +255,4 @@ const DossierEtudeDetail = () => {
     );
 };
 
-export default DossierEtudeDetail;
+export default DossierExecutionDetail;

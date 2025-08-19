@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getDossiersByType } from '../services/dossierExecutionService'
+import { getDossierById, getDossiersByType, updateDossierStatus } from '../services/dossierExecutionService'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { getUser } from '../utils/auth'
@@ -15,17 +15,40 @@ interface Dossier {
   }
 }
 
-const DossiersTable: React.FC<{ type: 'AEP' | 'ASSEU' | 'LES_DEUX' }> = ({ type }) => {
+const DossiersTable: React.FC<{ type: 'AEP' | 'ASSEU' | 'LES_DEUX'  }> = ({ type }) => {
   const [dossiers, setDossiers] = useState<Dossier[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
-
+  const canChangeStatus = (status: string ,dossier:Dossier) => {
+    const userRole = getUser()?.role
+    return (userRole === 'RESPONSABLE_AEP' && status === 'EN_COURS') ||
+           (userRole === 'RESPONSABLE_ASSEU' && status === 'EN_COURS') ||
+           (getUser()?.role === "RESPONSABLE_AEP" && String(dossier.status) !== "ACCEPTEE_AEP") ||
+           (getUser()?.role === "RESPONSABLE_ASSEU" && String(dossier.status) !== "ACCEPTEE_ASSEU")
+    }
+  const handleStatusChange = async (id:Number,status: string, remarques?: string) => {
+          try {
+              await updateDossierStatus(Number(id), status, remarques);
+              toast.success("Statut mis à jour");
+              const updated = await getDossierById(Number(id));
+              setDossiers(dossiers.map(d => d.id === id ? updated : d));
+              // setDossier(updated);
+              // setShowModal(false);
+              // setRemarquesInput('');
+              
+          } catch (err) {
+              toast.error("Erreur lors de la mise à jour du statut");
+              console.error(err);
+          }
+      };
+  
   useEffect(() => {
     const fetchDossiers = async () => {
       try {
         const data = await getDossiersByType(type)
         setDossiers(data)
+        console.log('Dossiers récupérés:', data)
       } catch (error) {
         console.error(error)
         toast.error('Erreur lors du chargement des dossiers')
@@ -43,7 +66,7 @@ const DossiersTable: React.FC<{ type: 'AEP' | 'ASSEU' | 'LES_DEUX' }> = ({ type 
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">📂 Dossiers d'Étude — {type}</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">📂 Dossiers d'Éxecution — {type}</h2>
       <table className="w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200 text-sm">
@@ -72,6 +95,13 @@ const DossiersTable: React.FC<{ type: 'AEP' | 'ASSEU' | 'LES_DEUX' }> = ({ type 
                 >
                   Détails
                 </button>
+                <button
+                        className="bg-yellow-500 text-white px-2 py-1 rounded text-sm hover:bg-yellow-600 disabled:opacity-50"
+                        onClick={() => handleStatusChange(dossier.id, 'ACCEPTEE')}
+                        disabled={!canChangeStatus(dossier.status, dossier)}
+                      >
+                        Clôturer
+                      </button>
               </td>
             </tr>
           ))}
