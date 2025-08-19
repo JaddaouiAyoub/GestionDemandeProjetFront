@@ -37,10 +37,11 @@ export default function PvEssaiEcoulement() {
       {/* Header */}
       <div className="text-center mb-6">
         <img src="/logo-onee2.png" alt="ONEE Logo" className="mx-auto w-64" />
-        {/* <p className="mt-2">
-          N° …………………… ASG{visite.id}/202 &nbsp;&nbsp;&nbsp;&nbsp; {visite.dossierExecution.demande.ville}, le{" "}
+        <p className="mt-2">
+        {/*   N° …………………… ASG{visite.id}/202 &nbsp;&nbsp;&nbsp;&nbsp; */}
+           {visite.dossierExecution.demande.ville}, le{" "}
           {new Date(visite.date).toLocaleDateString()}
-        </p> */}
+        </p> 
       </div>
 
       {/* Title */}
