@@ -28,6 +28,7 @@ export default function ResASSEULayout() {
           <NavItem to="mes-demandes" icon={<FaLink />} label="Liste des demandes" />
           <NavItem to="dossiers" icon={<FaBars />} label="Liste des dossiers d'étude" />
           <NavItem to="dossiersExecution" icon={<FaCalendarAlt />} label="Dossiers d'exécution" />
+          <NavItem to="visites" icon={<FaInfoCircle />} label="Visites" />
 
           {/* <NavItem to="events" icon={<FaCalendarAlt />} label="Events" />
           <NavItem to="about" icon={<FaInfoCircle />} label="About" />

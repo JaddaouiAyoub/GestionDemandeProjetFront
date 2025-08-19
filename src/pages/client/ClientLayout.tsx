@@ -28,6 +28,8 @@ export default function ClientLayout() {
           <NavItem to="mes-demandes" icon={<FaLink />} label="Mes demandes" />
           <NavItem to="mes-dossiers" icon={<FaBars />} label="Mes dossiers D'études" />
           <NavItem to="dossiersExecution" icon={<FaCalendarAlt />} label="Mes dossiers D'exécution" />
+          <NavItem to="visites" icon={<FaInfoCircle />} label="Visites" />
+
           {/* <NavItem to="about" icon={<FaInfoCircle />} label="About" />
           <NavItem to="services" icon={<FaServicestack />} label="Services" />
           <NavItem to="contact" icon={<FaEnvelope />} label="Contact" /> */}

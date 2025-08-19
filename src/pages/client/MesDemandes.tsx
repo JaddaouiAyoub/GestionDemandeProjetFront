@@ -22,13 +22,14 @@ export default function MesDemandes() {
     const navigate = useNavigate()
 
     const handleModalSuccess = (newDemande: Demande) => {
-        console.log('Demande ajoutée:', newDemande);
-        console.log('Demandes avant ajout:', demandes);
-        console.log('Demandes après ajout:', [...demandes, newDemande]);
-        setDemandes([newDemande, ...demandes])
+        // console.log('Demande ajoutée:', newDemande);
+        // console.log('Demandes avant ajout:', demandes);
+        // console.log('Demandes après ajout:', [...demandes, newDemande]);
+        // setDemandes([newDemande, ...demandes])
+        toast.success('Demande créée avec succès veuillez ajouter les documents nécessaires')
+        navigate(`/${getUser()?.role.toLowerCase()}/mes-demandes/${newDemande.id}`)
         // Refresh list or toast
-        toast.success('Demande créée avec succès')
-        console.log('Demande créée avec succès');
+        // console.log('Demande créée avec succès');
     };
     useEffect(() => {
         const fetchDemandes = async () => {

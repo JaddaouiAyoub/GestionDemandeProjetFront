@@ -25,6 +25,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import MesDossiersExecution from './pages/client/MesDossiersExexution'
 import UsersPage from './pages/directeur/UsersPage'
 import DirecteurLayout from './pages/directeur/DirecteurLayout'
+import MesVisites from './components/MesVisites'
+import PvEssaiEcoulement from './components/PvEssaiEcoulement'
 
 function App() {
   return (
@@ -75,6 +77,9 @@ function App() {
             <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
             <Route path="dossiersExecution" element={<MesDossiersExecution type="LES_DEUX" />} />
             {/* ...autres routes */}
+            <Route path="visites" element={<MesVisites />} />
+            <Route path="visites/:id" element={<PvEssaiEcoulement />} />
+
           </Route>
 
           <Route
@@ -118,6 +123,8 @@ function App() {
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResAEPHome />} />
             <Route path="mes-demandes" element={<DemandesPage type="AEP" />} />
+            <Route path="visites" element={<MesVisites typeDemande={"AEP"} />} />
+
             {/* <Route path="mes-demandes" element={<MesDemandes />} /> */}
             {/* ...autres routes */}
           </Route>
@@ -137,6 +144,7 @@ function App() {
             <Route path="dossiers/:id" element={<DossierEtudeDetail />} />
             <Route path="dossiersExecution" element={<DossiersExecutionTable type="ASSEU" />} />
             <Route path="dossiersExecution/:id" element={<DossierExecutionDetail />} />
+            <Route path="visites" element={<MesVisites typeDemande={"ASSEU"} />} />
 
             {/* Sous-routes */}
             <Route path="dashboard" element={<ResASSEUHome />} />
