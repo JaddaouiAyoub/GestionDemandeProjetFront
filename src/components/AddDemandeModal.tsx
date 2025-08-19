@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { createDemande } from '../services/demandeService';
+import { toast } from 'react-toastify';
+
 
 export default function AddDemandeModal({ onClose, onSuccess }) {
+  
   const [formData, setFormData] = useState({
     titre: '',
     ville: '',
@@ -69,7 +72,7 @@ export default function AddDemandeModal({ onClose, onSuccess }) {
       onClose();
     } catch (err) {
       console.error(err);
-      alert('Erreur lors de la création de la demande');
+      toast.error('Erreur lors de la création de la demande');
     }
   };
 
@@ -133,7 +136,7 @@ export default function AddDemandeModal({ onClose, onSuccess }) {
             rows={2}
           /> */}
 
-          <label className="block font-medium">📄 Documents requis</label>
+          {/* <label className="block font-medium">📄 Documents requis</label>
           <div className="flex flex-wrap gap-6 items-start">
             {docFields.map(({ key, label }) => (
               <div key={key}>
@@ -160,7 +163,7 @@ export default function AddDemandeModal({ onClose, onSuccess }) {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
 
           <button
             type="submit"
